@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Event Registration</string>
+    <string name="app_name">Event Reg</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_internet">Please check your Internet connection</string>
     <string name="about_text">People can view the most popular events that are happening right now in the Events tab. They can book the events of their choice and attend them at will. We as a platform make sure that we bring you the best shows possible.</string>
