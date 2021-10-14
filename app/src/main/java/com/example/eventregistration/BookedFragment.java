@@ -1,47 +1,49 @@
 package com.example.eventregistration;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BookedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.eventregistration.model.Objects;
+import com.example.eventregistration.utils.ItemClickSupport;
+import com.example.eventregistration.utils.OverlayFrame;
+
+import java.util.ArrayList;
+
 public class BookedFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String BOOKED_PARAM_1 = "bookedUserEmail";
+    private static final String BOOKED_PARAM_2 = "bookedUserPhone";
+    private static final String BOOKED_PARAM_3 = "bookedEvents";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String userEmail;
+    private String userPhNo;
+    ArrayList<Objects> bookedEvents = new ArrayList<Objects>();
+    RecyclerView bookedRecyclerView;
+    TextView emptyBooked, emptyNetworkIssueBooked;
+    OverlayFrame overlayFrame;
 
     public BookedFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BookedFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BookedFragment newInstance(String param1, String param2) {
+    public static BookedFragment newInstance(String email, String phNo, ArrayList<Objects> events) {
         BookedFragment fragment = new BookedFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(BOOKED_PARAM_1, email);
+        args.putString(BOOKED_PARAM_2, phNo);
+        args.putParcelableArrayList(BOOKED_PARAM_3, events);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,8 +52,9 @@ public class BookedFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            userEmail = getArguments().getString(BOOKED_PARAM_1);
+            userPhNo = getArguments().getString(BOOKED_PARAM_2);
+            bookedEvents = getArguments().getParcelableArrayList(BOOKED_PARAM_3);
         }
     }
 
@@ -60,5 +63,50 @@ public class BookedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_booked, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        overlayFrame = getActivity().findViewById(R.id.overlay_frame);
+        //overlayFrame.displayOverlay(true);
+        bookedRecyclerView = view.findViewById(R.id.booked_events_rv);
+        emptyBooked = view.findViewById(R.id.empty_booked_events_tv);
+        emptyNetworkIssueBooked = view.findViewById(R.id.empty_network_issue_booked_events_tv);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        bookedRecyclerView.setLayoutManager(linearLayoutManager);
+        //Log.i("UpcomingAllFragment", "UpcomingAllFragment contestsAll : " + contestsAll.size());
+        if (bookedEvents != null && bookedEvents.size() != 0) {
+            Log.i("BookedFragment", "Inside not empty bookedEvents");
+            bookedRecyclerView.setAdapter(new BookedEventsAdapter(bookedEvents));
+            //overlayFrame.displayOverlay(false);
+        } else {
+            emptyBooked.setVisibility(View.VISIBLE);
+            //emptyNetworkIssueUpcomingAll.setVisibility(View.VISIBLE);
+            //Log.i("UpcomingAllFragment","The visibility is set for the emtpy placeholder text views ");
+            //overlayFrame.displayOverlay(false);
+        }
+        //overlayFrame.displayOverlay(false);
+
+        ItemClickSupport.addTo(bookedRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Log.i("BookedEventsFragment", "position of click : " + position);
+                //Log.i("UpcomingAllFragment", "on click contestsAll size is : " + contestsAll.size());
+                showSelectedContestDetail(bookedEvents.get(position));
+            }
+        });
+
+    }
+
+    private void showSelectedContestDetail(Objects bookedEvent) {
+        //Log.i("UpcomingAllFragment", "on click contestsAll.getpos platform name is : " + contestsAll.getResource().getName());
+        Intent intentEventDetail = new Intent(getActivity(), EventDetailActivity.class);
+        Bundle extras = new Bundle();
+        extras.putParcelable("EXTRA_EVENT", bookedEvent);
+        extras.putInt("EXTRA_INT", 1);
+        intentEventDetail.putExtras(extras);
+        startActivity(intentEventDetail);
     }
 }
