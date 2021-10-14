@@ -107,6 +107,8 @@ public class EventsFragment extends Fragment {
         Bundle extras = new Bundle();
         extras.putParcelable("EXTRA_EVENT", unBookedEvent);
         extras.putInt("EXTRA_INT", 2);
+        extras.putString("USER_EMAIL", userEmail);
+        extras.putString("USER_PHNO", userPhNo);
         intentEventDetail.putExtras(extras);
         startActivity(intentEventDetail);
     }

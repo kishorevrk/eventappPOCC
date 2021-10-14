@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        finishAffinity();
     }
 
     private void fetchData(String userEmail, String userPhNo) {
