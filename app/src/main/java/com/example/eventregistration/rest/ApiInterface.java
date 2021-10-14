@@ -8,13 +8,13 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("/")
+    @GET("/book_event/")
     Call<Event> bookEvent(@Query("email") String email, @Query("phone_number") String phone_number, @Query("eventId") String eventId);
 
-    @GET("/")
+    @GET("/booked_events/")
     Call<Event> getBookedEvents(@Query("email") String email, @Query("phone_number") String phone_number);
 
-    @GET("/")
+    @GET("/events_not_booked/")
     Call<Event> getUnbookedEvents(@Query("email") String email, @Query("phone_number") String phone_number);
 
 }

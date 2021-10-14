@@ -18,7 +18,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/empty_events_tv"
+            android:id="@+id/empty_booked_events_tv"
             android:text="There are no events currently"
             android:textSize="25sp"
             android:textColor="@android:color/white"
@@ -33,8 +33,8 @@
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/empty_events_tv"
-            android:id="@+id/empty_network_issue_events_tv"
+            app:layout_constraintTop_toBottomOf="@+id/empty_booked_events_tv"
+            android:id="@+id/empty_network_issue_booked_events_tv"
             android:text="Might be a network issue too"
             android:textSize="15sp"
             android:layout_marginTop="150dp"
@@ -46,7 +46,7 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/events_rv"
+            android:id="@+id/booked_events_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
