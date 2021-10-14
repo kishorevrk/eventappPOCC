@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
 
         int SPLASH_TIME_OUT = 3500;
         new android.os.Handler().postDelayed(() -> {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             finish();
         }, SPLASH_TIME_OUT);
     }
