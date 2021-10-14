@@ -89,9 +89,10 @@
             android:padding="16dp"
             android:fontFamily="@font/cerebri_sans_bold"
             android:text="Book Event"
+            android:textSize="18dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            app:backgroundTint="@color/colorPrimary"
+            android:background="@color/colorPrimary"
             app:cornerRadius="20dp" />
 
     </LinearLayout>
