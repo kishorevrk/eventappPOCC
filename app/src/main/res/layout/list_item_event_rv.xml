@@ -11,9 +11,9 @@
         android:id="@+id/event_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/colorPrimary"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,15 +42,15 @@
 
                 <TextView
                     android:id="@+id/event_name"
-                    android:layout_width="300dp"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/cerebri_sans_bold"
                     android:maxLines="1"
-                    android:text="The Comedy Club"
+                    android:text="Central Club of Comedy"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
                 <TextView
                     android:id="@+id/event_time"
                     android:layout_width="wrap_content"
