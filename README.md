@@ -28,8 +28,6 @@ This app is built natively using Android Studio with Java. The backend API is bu
 * **Node.js** - To build the API
 * **Express.js** - For configuring the API endpoints
 
-## Developer
-* **Dinesh B S** [(@DineshBS44)](https://github.com/DineshBS44)
 
 ## License
 Licensed under MIT License :  https://opensource.org/licenses/MIT
